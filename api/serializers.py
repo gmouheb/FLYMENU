@@ -73,10 +73,11 @@ class MenuSerializer(serializers.ModelSerializer):
         required=False,
         allow_empty=True
     )
+    Table = serializers.IntegerField(required=False, allow_null=True)
 
     class Meta:
         model = Menu
-        fields = ['id', 'Title', 'Slug', 'MenuItems', 'menu_items_ids']
+        fields = ['id', 'Title', 'Slug', 'MenuItems', 'menu_items_ids', 'Table']
         extra_kwargs = {
             'Slug': {'read_only': True}
         }
@@ -128,10 +129,11 @@ class MenuSerializer(serializers.ModelSerializer):
 class MenuListSerializer(serializers.ModelSerializer):
     """Lightweight serializer for listing menus"""
     items_count = serializers.SerializerMethodField()
+    Table = serializers.IntegerField(required=False, allow_null=True)
 
     class Meta:
         model = Menu
-        fields = ['id', 'Title', 'Slug', 'items_count']
+        fields = ['id', 'Title', 'Slug', 'items_count', 'Table']
 
     def get_items_count(self, obj):
         return obj.MenuItems.count()
