@@ -1,0 +1,7 @@
+<h1>All Categories</h1>
+{% for i in object_list %}
+<ul>
+<li>Title: {{ i.Name }}</li>
+<li>Description: {{ i.Description }}</li>
+</ul>
+{% endfor %}
